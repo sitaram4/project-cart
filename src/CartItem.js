@@ -1,18 +1,7 @@
 import React from 'react';
 
 class CartItem extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            price:99,
-            title:'Mobile Phone',
-            qty:1,
-            img:''
-        }
-        // this.testing();
-        // 2nd way
-        // this.increaseQuantity=this.increaseQuantity.bind(this)
-    }
+    
     // increaseQuantity(){
     //     console.log('this.state:    ' , this.state);
     // }
@@ -62,8 +51,10 @@ class CartItem extends React.Component{
         });
     }
     render(){
-        const {price,title,qty} = this.state;
-        console.log('render')
+        console.log('props',this.props)
+        // const {price,title,qty} = this.state;
+        const {price,title,qty} = this.props.product;
+        
         return (
             <div className = "cart-item">
                 <div className = "left-block">
@@ -71,8 +62,8 @@ class CartItem extends React.Component{
                 </div>
                 <div className="right-block">
                     <div style ={{fontSize:25}}>{title}</div>
-                    <div style={{color:'#777'}}>{price}</div>
-                    <div style={{color:'#777'}}>{qty}</div>
+                    <div style={{color:'#777'}}>Rs {price}</div>
+                    <div style={{color:'#777'}}>Qty:{qty}</div>
                     <div className="cart-item-actions">
                         {/* Buttons  */}
                         {/* Bind{1st way} */}
