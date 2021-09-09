@@ -9,6 +9,7 @@ class CartItem extends React.Component{
             qty:1,
             img:''
         }
+        this.testing();
         // 2nd way
         // this.increaseQuantity=this.increaseQuantity.bind(this)
     }
@@ -46,8 +47,23 @@ class CartItem extends React.Component{
             console.log("call back function");
         })
     }
+    testing(){
+        const promise = new Promise((resolve,reject) =>{
+            setTimeout(() =>{
+                resolve('done');
+            },5000);
+        })
+
+        promise.then(() =>{
+            this.setState({qty:this.state.qty+10});
+            this.setState({qty:this.state.qty+10});
+            this.setState({qty:this.state.qty+10});
+            console.log('state',this.state)
+        });
+    }
     render(){
         const {price,title,qty} = this.state;
+        console.log('render')
         return (
             <div className = "cart-item">
                 <div className = "left-block">
