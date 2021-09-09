@@ -33,9 +33,37 @@ class Cart extends React.Component{
         // this.increaseQuantity=this.increaseQuantity.bind(this)
     }
 
-
+    handleIncreaseQuantity = (product) => {
+        console.log('Hey Increase the qty of',product);
+        const {products} = this.state;
+        const index = products.indexOf(product);
+        products[index].qty +=1;
+        this.setState({
+            products:products
+        })
+    }
+    handleDecreaseQuantity = (product) => {
+        console.log('Decrease Quantity');
+        const {products} = this.state;
+        const index = products.indexOf(product);
+        if(products[index].qty === 0){
+            return;
+        }
+        products[index].qty -=1;
+        this.setState({
+            products:products
+        })
+    }
+    handleDeleteProduct = (id) =>{
+        console.log('delete product');
+        const {products} = this.state;
+        const items = products.filter((item) => item.id!=id);
+        this.setState({
+            products:items
+        })
+    }
     render(){
-        const arr = [1,2,3,4,5];
+        // const arr = [1,2,3,4,5];
         const {products} = this.state;
         return (
            <div className='cart'>
@@ -47,6 +75,9 @@ class Cart extends React.Component{
                    return <CartItem 
                    product={product} 
                    key='product.id'
+                   onIncreaseQuantity = {this.handleIncreaseQuantity}
+                   onDecreaseQuantity = {this.handleDecreaseQuantity}
+                   onDeleteProduct = {this.handleDeleteProduct}
                    />
                })}
            </div>
